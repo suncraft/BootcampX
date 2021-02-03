@@ -30,3 +30,24 @@ WHERE cohorts.name = 'FEB12';
 
 -- INSERT INTO assignment_submissions (id, assignment_id, student_id, submission_date, duration) VALUES (1, 1, 1, '2018-02-12T08:00:00.000Z', 22.5);
 -- INSERT INTO assignment_submissions (id, assignment_id, student_id, submission_date, duration) VALUES (2, 2, 1, '2018-02-12T08:00:00.000Z', 60);
+
+
+-- -- group by walkthrough: 
+-- --search students where enrolled students has null end_date
+-- SELECT students.name as student, count(assignment_submissions.*) as total_submissions
+-- FROM assignment_submissions
+-- JOIN students ON students.id = student_id
+-- WHERE students.end_date IS NULL
+-- GROUP BY students.name;
+
+-- --having:
+-- --Our WHERE clause works on normal data students.end_date and our HAVING clause works on the aggregated data count(assignment_submissions.*).
+-- SELECT students.name as student, count(assignment_submissions.*) as total_submissions
+-- FROM assignment_submissions
+-- JOIN students ON students.id = student_id
+-- WHERE students.end_date IS NULL
+-- GROUP BY students.name
+-- HAVING count(assignment_submissions.*) < 100;
+
+--GROUP BY allows us to combine the results based on a column so an aggregate can be applied to each group.
+--HAVING allows us to filter our results based on the result of an aggregate function.
